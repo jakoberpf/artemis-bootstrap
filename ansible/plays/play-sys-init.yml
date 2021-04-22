@@ -1,0 +1,77 @@
+---
+- name: Setup RaspberryPies basics
+  hosts: masters
+  remote_user: ubuntu
+
+  tasks:
+
+    - name: Check for current installer config "00-installer-config.yaml"
+      stat: 
+        path: /etc/netplan/00-installer-config.yaml
+      register: installer_config
+
+    - name:  Backup current installer config "00-installer-config.yaml"
+      become: yes
+      command: mv /etc/netplan/00-installer-config.yaml /etc/netplan/00-installer-config.yaml.backup
+      when: installer_config.stat.exists
+
+    - name: Check for current cloud init config "00-cloud-init-config.yaml"
+      stat: 
+        path: /etc/netplan/00-cloud-init-config.yaml
+      register: cloud_init_config
+
+    - name: Backup current cloud init config "00-cloud-init-config.yaml"
+      become: yes
+      command: mv /etc/netplan/00-cloud-init-config.yaml /etc/netplan/00-cloud-init-config.yaml.backup
+      when: cloud_init_config.stat.exists
+
+    - name: Check for current cloud init config "50-cloud-init.yaml"
+      stat: 
+        path: /etc/netplan/50-cloud-init.yaml
+      register: cloud_init_config
+
+    - name: Backup current cloud init config "50-cloud-init.yaml"
+      become: yes
+      command: mv /etc/netplan/50-cloud-init.yaml /etc/netplan/50-cloud-init.yaml.backup
+      when: cloud_init_config.stat.exists
+
+    ##############
+    ### Remove ###
+    ##############
+
+    # - name: Remove current installer config
+    #   become: yes
+    #   file: 
+    #     path: /etc/netplan/00-installer-config.yaml
+    #     state: absent
+
+    # - name: Remove current cloud init config 
+    #   become: yes
+    #   file: 
+    #     path: /etc/netplan/00-cloud-init-config.yaml
+    #     state: absent
+
+    # - name: Remove current cloud init config 
+    #   become: yes
+    #   file: 
+    #     path: /etc/netplan/50-cloud-init.yaml
+    #     state: absent
+    
+  roles:
+  
+    - common/update
+    - common/hostname
+
+    - role: common/sudoers 
+      vars:
+        - security_sudoers_passwordless: [ubuntu]
+
+    # - role: common/password
+    #   vars: 
+    #     - user: ubuntu
+    #     - newpassword: "{{ admin_password }}"
+
+    - role: networking/netplan
+      netplan_enabled: true
+      netplan_config_file: /etc/netplan/01-ansible-config.yaml
+      netplan_renderer: networkd

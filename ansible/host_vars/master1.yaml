@@ -1,0 +1,18 @@
+---
+hostname: master1
+# ansible_ssh_private_key_file: "{{ lookup('env','SSH_KEY') }}"
+
+netplan_configuration:
+  network:
+          version: 2
+          ethernets:
+            eth0:
+              addresses:
+                - 192.168.2.11/16
+              gateway4: 192.168.178.1
+              nameservers:
+                addresses:
+                  - 1.1.1.1
+                  - 8.8.8.8
+              dhcp4: no
+              dhcp6: no
