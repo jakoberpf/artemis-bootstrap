@@ -1,0 +1,37 @@
+---
+## Description
+# Setup ha etcd database kubernetes
+
+## Command
+# ansible-playbook -i hosts plays/play-database.yml --private-key=../.ssh/id_rsa_etcd
+
+- name: Setup ha etcd database kubernetes
+  hosts: servers
+  remote_user: etcd
+  # serial: 2
+
+  vars:
+
+    - inventory_groupname: servers
+
+  tasks:
+
+    # - debug: var={% for item in groups[inventory_groupname] %} {{ hostvars[item].ansible_hostname }}=https://{{ hostvars[item].ansible_eth0.ipv4.address }}:2380 {% if not loop.last %}, {% endif %} {% endfor %}
+
+  roles:
+
+    - role: ssh-cluster
+    
+    - name: database/etcd
+      vars:
+        # Define the inventory group of the etcd hosts
+        inventory_groupname: etcd
+        # Define the tls certificate location by directory (look for individual server certificates)
+        # etcd_server_dir: /Users/jakoberpf/Projects/ACloudGuru/kubernetes-the-hard-way/cloud-servers/01-certificates
+        # Define the tls certificate location by file (look for a single server certificate)
+        etcd_server: ../certificates/etcd     # TODO rename to etcd_certs_server
+        etcd_ca: ../certificates/ca           # TODO rename to etcd_certs_ca
+        # Define the interface to use for etcd traffic
+        etcd_interface: eth0.10 # {{ lookup('vars', 'virtual_cluster_interface') }}
+
+        etcd_node_list: server-01=https://192.168.10.11:2380,server-02=https://192.168.10.12:2380,server-03=https://192.168.10.13:2380

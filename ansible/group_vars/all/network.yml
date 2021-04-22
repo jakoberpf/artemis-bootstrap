@@ -1,0 +1,13 @@
+virtual_ip_etcd: 192.168.2.4
+virtual_ip_kubernetes: 192.168.2.5
+virtual_ip_rancher: 192.168.2.200
+
+ha_domain_etcd: etcd.raspberry.pies.jakoberpf.de
+ha_domain_kube: kube.raspberry.pies.jakoberpf.de
+
+interface: "eth0"
+routers: "192.168.178.1"
+dns_server_primary: "8.8.8.8"
+dns_server_secondary: "1.1.1.1"
+
+interface_virtual_ips: eth0
