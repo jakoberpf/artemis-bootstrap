@@ -66,10 +66,10 @@
       vars:
         - security_sudoers_passwordless: [ubuntu]
 
-    # - role: common/password
-    #   vars: 
-    #     - user: ubuntu
-    #     - newpassword: "{{ admin_password }}"
+    - role: common/password
+      vars: 
+        - user: ubuntu
+        - newpassword: "{{ ubuntu_password }}"
 
     - role: networking/netplan
       netplan_enabled: true
