@@ -1,4 +1,4 @@
-ha_ip: 192.168.2.41
+ha_ip: 192.168.2.2
 
 ha_domain_etcd: etcd.k8s.home.jakoberpf.de
 ha_domain_kube: kube.k8s.home.jakoberpf.de
