@@ -10,7 +10,7 @@ usage() {
   echo "Run the script with '$0 <some node name> (optional <some target path>)'"
   echo "e.g. '$0 k3os-pi4-a /Volumes/system-boot'"
   echo -e "the following node files are detected:\n"
-  ls -1 nodes
+  ls -1 ../nodes
   exit 1
 }
 
@@ -19,7 +19,7 @@ if [ $# -eq 0 ]
     usage
 else
   NODE="$1"
-  if [ -f "nodes/$NODE" ]
+  if [ -f "../nodes/$NODE" ]
     then
       echo "$NODE found"
     else
@@ -48,8 +48,8 @@ export REPO_ROOT=$(git rev-parse --show-toplevel)
 message "writing $NODE configuration to $TARGET_VOLUME"
 
 echo "copying cmdline.txt to $TARGET_VOLUME/cmdline.txt"
-cp -f cmdline.txt "$TARGET_VOLUME/cmdline.txt"
+cp -f ../cmdline.txt "$TARGET_VOLUME/cmdline.txt"
 echo "copying network-config to $TARGET_VOLUME/network-config"
-cp -f network-config "$TARGET_VOLUME/network-config"
+cp -f ../nodes/${NODE}.network "$TARGET_VOLUME/network-config"
 echo "copying nodes/${NODE} to $TARGET_VOLUME/user-data"
-envsubst < "nodes/${NODE}" > "$TARGET_VOLUME/user-data"
+envsubst < "../nodes/${NODE}" > "$TARGET_VOLUME/user-data"

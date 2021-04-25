@@ -1,5 +1,9 @@
 # Bootstrapping multiple Raspberry Pi 4's [arm64] into a hybrid k8s/ceph cluster
 
+Requirement:
+- sops
+- vault
+- ansible
 ## 64-bit arm ubuntu
 
 See [this wiki for details](https://wiki.ubuntu.com/ARM/RaspberryPi)
