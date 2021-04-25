@@ -1,0 +1,14 @@
+---
+## Description
+# This ansible playbook setups the container runtime (containerd) and kubernetes cluster
+
+## Command
+# ansible-playbook -i inventory plays/kubernetes.yml
+
+- name: Setup container runtime and kubernetes
+  hosts: masters
+  remote_user: ubuntu
+
+  roles:
+    - name: kubernetes/containerd
+    - name: kubernetes/k8s
