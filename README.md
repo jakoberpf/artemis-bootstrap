@@ -1,4 +1,4 @@
-# Bootstrapping multiple Raspberry Pi 4's [arm64]
+# Bootstrapping multiple Raspberry Pi 4's [arm64] into a hybrid k8s/ceph cluster
 
 ## 64-bit arm ubuntu
 
