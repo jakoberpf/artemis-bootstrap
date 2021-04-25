@@ -42,8 +42,8 @@ else
   TARGET_VOLUME="$2"
 fi
 
-# export REPO_ROOT=$(git rev-parse --show-toplevel)
-# . "$REPO_ROOT"/.env
+export REPO_ROOT=$(git rev-parse --show-toplevel)
+. "$REPO_ROOT"/bin/.env
 
 message "writing $NODE configuration to $TARGET_VOLUME"
 
