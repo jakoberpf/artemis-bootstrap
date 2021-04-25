@@ -1,2 +1,2 @@
-ansible/.vault_pass
-.envrc
+*.vault_pass
+*.envrc

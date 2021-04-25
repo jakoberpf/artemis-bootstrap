@@ -1,4 +1,2 @@
 export VAULT_TOKEN=
 export VAULT_ADDR=
-export UBUNTU_PASSWORD=
-export GITHUB_USER=
