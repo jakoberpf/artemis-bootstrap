@@ -11,4 +11,6 @@
 
   roles:
     - name: kubernetes/containerd
+      vars:
+        - docker_apt_arch: arm64
     - name: kubernetes/k8s
