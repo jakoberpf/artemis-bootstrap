@@ -37,3 +37,5 @@ It will take some time for the [cloud-init](https://cloudinit.readthedocs.io/en/
 ```
 alias sshb="ssh -J ubuntu@$BASTION_IP"
 ```
+
+https://cloudinit.readthedocs.io/en/latest/topics/modules.html#disk-setup
