@@ -1,1 +1,13 @@
 https://www.reddit.com/r/ceph/comments/mi3asa/cephadm_on_ubuntu_2004/
+
+cd /tmp \
+curl --silent --remote-name --location https://github.com/ceph/ceph/raw/pacific/src/cephadm/cephadm \
+chmod +x cephadm \
+sudo ./cephadm add-repo --release pacific \
+sudo rm /etc/apt/trusted.gpg.d/ceph.release.gpg \ 
+wget https://download.ceph.com/keys/release.asc \
+sudo apt-key add release.asc \
+sudo apt update \
+sudo ./cephadm install
+
+sudo apt upgrade
