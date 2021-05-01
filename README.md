@@ -39,3 +39,7 @@ alias sshb="ssh -J ubuntu@$BASTION_IP"
 ```
 
 https://cloudinit.readthedocs.io/en/latest/topics/modules.html#disk-setup
+
+
+## Kube config location
+/etc/kubernetes/admin.conf
