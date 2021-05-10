@@ -19,7 +19,7 @@ if [ $# -eq 0 ]
     usage
 else
   NODE="$1"
-  if [ -f "../nodes/$NODE" ]
+  if [ -d "../nodes/$NODE" ]
     then
       echo "$NODE found"
     else
@@ -42,14 +42,17 @@ else
   TARGET_VOLUME="$2"
 fi
 
+# Get project root
 export REPO_ROOT=$(git rev-parse --show-toplevel)
+
+# Source environmental variables 
 . "$REPO_ROOT"/bin/.env
 
 message "writing $NODE configuration to $TARGET_VOLUME"
 
 echo "copying cmdline.txt to $TARGET_VOLUME/cmdline.txt"
-cp -f ../cmdline.txt "$TARGET_VOLUME/cmdline.txt"
-echo "copying network-config to $TARGET_VOLUME/network-config"
-cp -f ../nodes/${NODE}.network "$TARGET_VOLUME/network-config"
-echo "copying nodes/${NODE} to $TARGET_VOLUME/user-data"
-envsubst < "../nodes/${NODE}" > "$TARGET_VOLUME/user-data"
+cp -f ../nodes/global/cmdline.txt "$TARGET_VOLUME/cmdline.txt"
+echo "copying network-config nodes/${NODE} to $TARGET_VOLUME/network-config"
+cp -f ../nodes/${NODE}/network-config "$TARGET_VOLUME/network-config"
+echo "copying user-data nodes/${NODE} to $TARGET_VOLUME/user-data"
+envsubst < "../nodes/${NODE}/user-data" > "$TARGET_VOLUME/user-data"
