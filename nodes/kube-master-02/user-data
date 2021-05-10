@@ -1,0 +1,35 @@
+#cloud-config
+
+hostname: kube-master-02
+
+chpasswd:
+  expire: false
+  list:
+  - ubuntu:$UBUNTU_PASSWORD
+
+# Enable password authentication with the SSH daemon
+ssh_pwauth: false
+
+ssh_authorized_keys:
+  - $UBUNTU_AUTHORIZED_KEY
+
+## Update apt database and upgrade packages on first boot
+package_update: true
+package_upgrade: true
+
+packages:
+- curl
+- wget
+- htop
+
+runcmd:
+- ln -sfn /run/systemd/resolve/resolv.conf /etc/resolv.conf
+- sync
+- reboot -f
+
+device_aliases: {'m2osd1': '/dev/sda'}
+disk_setup:
+  m2osd1:
+    table_type: gpt
+    layout: False
+    overwrite: True
