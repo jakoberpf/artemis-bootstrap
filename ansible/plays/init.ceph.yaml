@@ -1,0 +1,44 @@
+# https://www.reddit.com/r/ceph/comments/mi3asa/cephadm_on_ubuntu_2004/
+
+# cd /tmp \
+# curl --silent --remote-name --location https://github.com/ceph/ceph/raw/pacific/src/cephadm/cephadm \
+# chmod +x cephadm \
+# sudo ./cephadm add-repo --release pacific \
+# sudo rm /etc/apt/trusted.gpg.d/ceph.release.gpg \ 
+# wget https://download.ceph.com/keys/release.asc \
+# sudo apt-key add release.asc \
+# sudo apt update \
+# sudo ./cephadm install
+
+# sudo apt upgrade
+
+# https://docs.ceph.com/en/octopus/cephadm/install/
+# https://docs.ceph.com/en/latest/cephadm/monitoring/
+# sudo cephadm bootstrap --mon-ip 192.168.2.21 --skip-monitoring-stack --allow-overwrite
+
+# sudo wipefs -a /dev/sda
+# sudo ceph orch daemon add osd development-machine:/dev/sda
+
+---
+- name: Initialise ceph pacific
+  hosts: ceph
+  remote_user: ubuntu
+
+  tasks:
+    - name: Fetch the ceph public key
+      slurp:
+        remote: /etc/ceph/ceph.pub
+      register: slurped_key_b64
+      when: hostname == "ceph-mon-01" # groups[inventory_groupname][0]
+
+    - name: Ensure the fetched key is set for charlie
+      authorized_key:
+        user: root
+        state: present
+        key: "{{ slurped_key_b64.content | b64decode }}"
+
+  roles:
+    - role: access/ssh
+      vars:
+        - ssh_permit_root_login: "yes"
+        - ssh_keys: 

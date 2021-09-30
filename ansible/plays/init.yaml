@@ -1,0 +1,16 @@
+---
+
+- name: Include system initialisation
+  include: init.system.yaml
+
+# - name: Include timeshift setup
+#   include: init.timeshift.yaml
+
+# - name: Include zerotier setup
+#   include: init.zerotier.yaml
+
+########
+# Ceph #
+########
+- name: Include ceph initialisation
+  include: init.ceph.yaml

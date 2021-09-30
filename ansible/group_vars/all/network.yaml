@@ -11,7 +11,4 @@ dns_server_secondary: "1.1.1.1"
 
 ansible_ssh_user: "ubuntu"
 ansible_ssh_bastion: "10.147.19.123"
-ansible_ssh_common_args: >
-  -o ProxyCommand="ssh -W %h:%p -q {{ ansible_ssh_user }}@{{ ansible_ssh_bastion }}" \
-  -o ServerAliveInterval=5 \
-  -o StrictHostKeyChecking=no
+ansible_ssh_common_args: '-F ../.ssh/config'

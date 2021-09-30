@@ -1,9 +1,10 @@
 ---
-- name: Setup RaspberryPies basics
-  hosts: masters
+- name: Initialise ubuntu system
+  hosts: kube:ceph
   remote_user: ubuntu
 
-  roles:
+  roles:         
+   
     - common/update
     - common/hostname
 
