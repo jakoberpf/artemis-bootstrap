@@ -30,6 +30,8 @@ runcmd:
 - reboot -f
 - sed -i '/^127\.0\.0\.1\s/s/$/ '"localhost ceph-mon-03"'/' /etc/hosts
 - sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+- rm /root/.ssh/authorized_keys
+- echo "$UBUNTU_AUTHORIZED_KEY" >> /root/.ssh/authorized_keys
 
 device_aliases: {'m2osd1': '/dev/sda'}
 disk_setup:
