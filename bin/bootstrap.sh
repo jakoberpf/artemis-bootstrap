@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/local/bin/bash
+echo "Running script with bash version: $BASH_VERSION"
+GIT_ROOT=$(git rev-parse --show-toplevel)
 
 message() {
   echo -e "\n######################################################################"
@@ -10,7 +12,7 @@ usage() {
   echo "Run the script with '$0 <some node name> (optional <some target path>)'"
   echo "e.g. '$0 k3os-pi4-a /Volumes/system-boot'"
   echo -e "the following node files are detected:\n"
-  ls -1 ../nodes
+  ls -1 $GIT_ROOT/nodes
   exit 1
 }
 
@@ -19,7 +21,7 @@ if [ $# -eq 0 ]
     usage
 else
   NODE="$1"
-  if [ -d "../nodes/$NODE" ]
+  if [ -d "$GIT_ROOT/nodes/$NODE" ]
     then
       echo "$NODE found"
     else
@@ -42,17 +44,14 @@ else
   TARGET_VOLUME="$2"
 fi
 
-# Get project root
-export REPO_ROOT=$(git rev-parse --show-toplevel)
-
 # Source environmental variables 
-. "$REPO_ROOT"/bin/.env
+. "$GIT_ROOT"/bin/.env
 
 message "writing $NODE configuration to $TARGET_VOLUME"
 
 echo "copying cmdline.txt to $TARGET_VOLUME/cmdline.txt"
-cp -f ../nodes/global/cmdline.txt "$TARGET_VOLUME/cmdline.txt"
+cp -f $GIT_ROOT/nodes/global/cmdline.txt "$TARGET_VOLUME/cmdline.txt"
 echo "copying network-config nodes/${NODE} to $TARGET_VOLUME/network-config"
-cp -f ../nodes/${NODE}/network-config "$TARGET_VOLUME/network-config"
+cp -f $GIT_ROOT/nodes/${NODE}/network-config "$TARGET_VOLUME/network-config"
 echo "copying user-data nodes/${NODE} to $TARGET_VOLUME/user-data"
-envsubst < "../nodes/${NODE}/user-data" > "$TARGET_VOLUME/user-data"
+envsubst < "$GIT_ROOT/nodes/${NODE}/user-data" > "$TARGET_VOLUME/user-data"
