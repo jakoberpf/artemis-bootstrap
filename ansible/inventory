@@ -1,9 +1,0 @@
-[masters]
-kube-master-01 ansible_host=192.168.2.11 hostname=kube-master-01
-kube-master-02 ansible_host=192.168.2.12 hostname=kube-master-02
-kube-master-03 ansible_host=192.168.2.13 hostname=kube-master-03
-
-[ceph-mon]
-ceph-mon-01 ansible_host=192.168.2.21 hostname=cepg-mon-01
-ceph-mon-02 ansible_host=192.168.2.22 hostname=cepg-mon-02
-ceph-mon-03 ansible_host=192.168.2.23 hostname=cepg-mon-03
