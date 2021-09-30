@@ -1,4 +1,4 @@
-# Bootstrapping multiple Raspberry Pi 4's [arm64] into a hybrid k8s/ceph cluster
+# Bootstrapping multiple Raspberry Pi 4's [arm64] into a k8s cluster
 
 Requirement:
 - sops
@@ -22,10 +22,10 @@ After flashing the image, re-mount the drive and copy the following files into `
 
 ### scripted setup
 
-This can be streamlined with the following script: `bootstrap-k3s.sh`:
+This can be streamlined with the following script: `bootstrap.sh`:
 
 ```shell
-./bootstrap-k3s.sh k3s-pi4-a /Volumes/system-boot
+./bootstrap.sh kube-master|node-XX /Volumes/system-boot
 ```
 
 ## boot into newly-provisioned ubuntu arm64 node with k3os
