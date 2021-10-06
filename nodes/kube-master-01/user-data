@@ -5,7 +5,6 @@ hostname: kube-master-01
 chpasswd:
   expire: false
   list:
-  - root:$UBUNTU_PASSWORD
   - ubuntu:$UBUNTU_PASSWORD
 
 # Enable password authentication with the SSH daemon
