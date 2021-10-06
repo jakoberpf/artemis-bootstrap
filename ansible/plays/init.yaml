@@ -12,5 +12,5 @@
 ########
 # Ceph #
 ########
-- name: Include ceph initialisation
-  include: init.ceph.yaml
+# - name: Include ceph initialisation
+#   include: init.ceph.yaml
