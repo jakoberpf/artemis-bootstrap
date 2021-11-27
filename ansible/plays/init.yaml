@@ -8,9 +8,3 @@
 
 # - name: Include zerotier setup
 #   include: init.zerotier.yaml
-
-########
-# Ceph #
-########
-# - name: Include ceph initialisation
-#   include: init.ceph.yaml
