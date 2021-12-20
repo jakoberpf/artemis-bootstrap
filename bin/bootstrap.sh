@@ -1,4 +1,4 @@
-#!/usr/local/bin/bash
+#!/usr/bin/env bash
 echo "Running script with bash version: $BASH_VERSION"
 GIT_ROOT=$(git rev-parse --show-toplevel)
 
