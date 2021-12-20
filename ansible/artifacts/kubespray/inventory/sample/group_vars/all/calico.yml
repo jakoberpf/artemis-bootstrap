@@ -1,0 +1,2 @@
+calico_node_livenessprobe_timeout: 30
+calico_node_readynessprobe_timeout: 30
