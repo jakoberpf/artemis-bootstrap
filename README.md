@@ -1,45 +1,34 @@
-# Bootstrapping multiple Raspberry Pi 4's [arm64] into a k8s cluster
+# Bootstrapping multiple Raspberry Pi 4's [arm64] into a kubernetes cluster
 
 Requirement:
-- sops
+
 - vault
+- vault2env
 - ansible
-## 64-bit arm ubuntu
 
-See [this wiki for details](https://wiki.ubuntu.com/ARM/RaspberryPi)
+**Note** The setup script will install the correct ansible version for you.
 
-### bootable image
-
-Download the [20.04 arm64 image](http://cdimage.ubuntu.com/releases/focal/release/ubuntu-20.04-preinstalled-server-arm64+raspi.img.xz) and save to an SD card.  [etcher works well for this](https://www.balena.io/etcher/?ref=etcher_menu)
-
-### manual setup
+## Setup boot disks
 
 After flashing the image, re-mount the drive and copy the following files into `<drive>/system-boot/`:
 
-* `user-data`
-* `network-config`
-* `cmdline.txt`
-
-### scripted setup
+- `user-data`
+- `network-config`
+- `cmdline.txt`
 
 This can be streamlined with the following script: `bootstrap.sh`:
 
-```shell
-./bootstrap.sh kube-master|node-XX /Volumes/system-boot
+```bash
+./bootstrap.sh kube-master|kube-worker-XX /Volumes/system-boot
 ```
 
-## boot into newly-provisioned ubuntu arm64 node with k3os
+## Setup raspberry pi`s
 
-It will take some time for the [cloud-init](https://cloudinit.readthedocs.io/en/latest/index.html) settings above to execute, so you may need to wait a while (10 mins?) before attempting to ssh into the newly-provisioned node. as the 'ubuntu' user.  The new node should auto-join the k3s cluster.
+**TODO** Setup init ansible scripts
+<https://help.ubuntu.com/community/InstallingANewHardDrive>
 
+## Setup the kubernetes cluster
 
-## Use ssh bastion
+```bash
+./kubespray/run.sh
 ```
-alias sshb="ssh -J ubuntu@$BASTION_IP"
-```
-
-https://cloudinit.readthedocs.io/en/latest/topics/modules.html#disk-setup
-
-
-## Kube config location
-/etc/kubernetes/admin.conf
