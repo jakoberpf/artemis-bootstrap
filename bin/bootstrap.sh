@@ -44,9 +44,6 @@ else
   TARGET_VOLUME="$2"
 fi
 
-# Source environmental variables 
-. "$GIT_ROOT"/bin/.env
-
 message "writing $NODE configuration to $TARGET_VOLUME"
 
 echo "copying cmdline.txt to $TARGET_VOLUME/cmdline.txt"
@@ -54,4 +51,4 @@ cp -f $GIT_ROOT/nodes/global/cmdline.txt "$TARGET_VOLUME/cmdline.txt"
 echo "copying network-config nodes/${NODE} to $TARGET_VOLUME/network-config"
 cp -f $GIT_ROOT/nodes/${NODE}/network-config "$TARGET_VOLUME/network-config"
 echo "copying user-data nodes/${NODE} to $TARGET_VOLUME/user-data"
-envsubst < "$GIT_ROOT/nodes/${NODE}/user-data" > "$TARGET_VOLUME/user-data"
+cp -f $GIT_ROOT/nodes/${NODE}/user-data "$TARGET_VOLUME/user-data"
