@@ -7,7 +7,7 @@ cd $GIT_ROOT
 
 # Run kubespray deployment
 docker run --rm -it \
-  --mount type=bind,source="$GIT_ROOT"/kubespray/inventory/artemis,dst=/inventory \
+  --mount type=bind,source="$GIT_ROOT"/kubespray,dst=/inventory \
   --mount type=bind,source="$GIT_ROOT"/.ssh/automation,dst=/root/.ssh/id_rsa \
   quay.io/kubespray/kubespray:v2.19.0 bash -c "ansible-playbook -i /inventory/inventory.ini -b --private-key /root/.ssh/id_rsa cluster.yml"
 
