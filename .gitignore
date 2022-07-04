@@ -31,6 +31,6 @@ override.tf.json
 
 .venv
 .DS_Store
-.ssh/*
+.ssh
 !.ssh/config
 kube-*
