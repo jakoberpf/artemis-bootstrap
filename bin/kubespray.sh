@@ -2,9 +2,6 @@
 GIT_ROOT=$(git rev-parse --show-toplevel)
 cd $GIT_ROOT
 
-# Setup secrets
-./vault.sh
-
 # Run kubespray deployment
 docker run --rm -it \
   --mount type=bind,source="$GIT_ROOT"/kubespray,dst=/inventory \
