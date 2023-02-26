@@ -19,10 +19,6 @@ vault: banner
 	@echo "[vault] Getting configuration and secrets from Vault"
 	@./bin/vault.sh
 
-taint: banner vault
-	@echo "[taint] Taining cluster nodes"
-	@./bin/taint.sh
-
 kubespray: banner vault
 	@echo "[kubespray] Configuring cluster infrastructure with kubespray"
 	@./bin/kubespray.sh
