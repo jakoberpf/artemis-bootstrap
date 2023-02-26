@@ -4,31 +4,52 @@ Requirement:
 
 - vault
 - vault2env
-- ansible
+- talosctl
+- talhelper
 
-**Note** The setup script will install the correct ansible version for you.
 
-## Setup boot disks
-
-After flashing the image, re-mount the drive and copy the following files into `<drive>/system-boot/`:
-
-- `user-data`
-- `network-config`
-- `cmdline.txt`
-
-This can be streamlined with the following script: `bootstrap.sh`:
+## Generate configuration
 
 ```bash
-./bootstrap.sh kube-master|kube-worker-XX /Volumes/system-boot
+age-keygen
+talhelper gensecret > talsecret.sops.yaml
+sops -e -i talsecret.sops.yaml
+talhelper genconfig
 ```
 
-## Setup raspberry pi`s
+## Bootstrap control-plane-nodes
 
-**TODO** Setup init ansible scripts
-<https://help.ubuntu.com/community/InstallingANewHardDrive>
-
-## Setup the kubernetes cluster
+After flashing the `talos` image to the SD card, boot the first node and start bootstrapping.
 
 ```bash
-./kubespray/run.sh
+talosctl apply-config --insecure --nodes 192.168.1.11 --file clusterconfig/artemis-master1.yaml
+talosctl apply-config --insecure --nodes 192.168.1.12 --file clusterconfig/artemis-master2.yaml
+talosctl apply-config --insecure --nodes 192.168.1.13 --file clusterconfig/artemis-master3.yaml
 ```
+
+## Bootstrap worker-nodes
+
+```bash
+talosctl apply-config --insecure --nodes 192.168.1.14 --file clusterconfig/artemis-worker1.yaml
+talosctl apply-config --insecure --nodes 192.168.1.15 --file clusterconfig/artemis-worker2.yaml
+talosctl apply-config --insecure --nodes 192.168.1.16 --file clusterconfig/artemis-worker3.yaml
+```
+
+## Retrieve cluster configuration
+
+```bash
+talosctl config endpoint --talosconfig $TALOS_CONFIG_FILE 192.168.1.11
+talosctl kubeconfig --talosconfig $TALOS_CONFIG_FILE --force-context-name artemis --nodes 192.168.1.11
+```
+
+## Troubleshooting
+
+```bash
+talosctl disks --insecure --nodes 192.168.0.38
+talosctl dmesg --nodes 192.168.1.11 --endpoints 192.168.1.11
+```
+
+## Resources
+
+<https://www.talos.dev/v1.3/talos-guides/install/single-board-computers/rpi_4/>
+<https://kubito.dev/posts/talos-linux-raspberry-pi/>

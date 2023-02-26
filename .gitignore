@@ -29,8 +29,9 @@ override.tf.json
 *identity.public
 *identity.secret
 
+.talos
 .venv
 .DS_Store
 .ssh
 !.ssh/config
-kube-*
+
