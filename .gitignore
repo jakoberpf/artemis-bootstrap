@@ -31,6 +31,7 @@ override.tf.json
 
 .talos
 .venv
+.kube
 .DS_Store
 .ssh
 !.ssh/config
