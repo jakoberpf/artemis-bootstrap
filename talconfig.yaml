@@ -4,11 +4,8 @@ kubernetesVersion: v1.26.0
 endpoint: https://192.168.1.11:6443
 domain: artemis.local
 allowSchedulingOnMasters: true
-additionalMachineCertSans:
-  - 192.168.1.10
-  - 192.168.1.11
-  - 192.168.1.12
-  - 192.168.1.13
+# additionalMachineCertSans:
+#   - 192.168.1.10
 additionalApiServerCertSans:
   - artemis.local
 clusterPodNets:
