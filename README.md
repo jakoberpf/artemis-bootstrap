@@ -47,6 +47,17 @@ talosctl dmesg -f --nodes 192.168.1.11 --talosconfig clusterconfig/talosconfig
 talosctl kubeconfig --talosconfig clusterconfig/talosconfig --force-context-name artemis --nodes 192.168.1.11
 ```
 
+## Reconfigure cluster and retrieve cluster configuration
+
+```bash
+talosctl apply-config --nodes 192.168.1.11 --file clusterconfig/artemis-master1.yaml --talosconfig clusterconfig/talosconfig
+talosctl apply-config --nodes 192.168.1.12 --file clusterconfig/artemis-master2.yaml --talosconfig clusterconfig/talosconfig
+talosctl apply-config --nodes 192.168.1.13 --file clusterconfig/artemis-master3.yaml --talosconfig clusterconfig/talosconfig
+talosctl apply-config --nodes 192.168.1.14 --file clusterconfig/artemis-worker1.yaml --talosconfig clusterconfig/talosconfig
+talosctl apply-config --nodes 192.168.1.15 --file clusterconfig/artemis-worker1.yaml --talosconfig clusterconfig/talosconfig
+talosctl apply-config --nodes 192.168.1.16 --file clusterconfig/artemis-worker1.yaml --talosconfig clusterconfig/talosconfig
+```
+
 ## Troubleshooting
 
 ```bash
