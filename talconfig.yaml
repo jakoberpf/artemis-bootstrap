@@ -3,8 +3,8 @@ talosVersion: v1.3.5
 endpoint: https://192.168.1.11:6443
 # domain: artemis.local
 allowSchedulingOnMasters: true
-# additionalMachineCertSans:
-#   - 192.168.1.10
+additionalMachineCertSans:
+  - 192.168.1.10
 # additionalApiServerCertSans:
 #   - artemis.local
 nodes:
@@ -21,8 +21,8 @@ nodes:
             gateway: 192.168.178.1
         mtu: 1500
         dhcp: false
-        # vip:
-        #   ip: 192.168.1.10
+        vip:
+          ip: 192.168.1.10
   - hostname: master2
     ipAddress: 192.168.1.12
     installDisk: /dev/mmcblk0
@@ -36,8 +36,8 @@ nodes:
             gateway: 192.168.178.1
         mtu: 1500
         dhcp: false
-        # vip:
-        #   ip: 192.168.1.10
+        vip:
+          ip: 192.168.1.10
   - hostname: master3
     ipAddress: 192.168.1.13
     installDisk: /dev/mmcblk0
@@ -51,8 +51,8 @@ nodes:
             gateway: 192.168.178.1
         mtu: 1500
         dhcp: false
-        # vip:
-        #   ip: 192.168.1.10
+        vip:
+          ip: 192.168.1.10
   # - hostname: worker1
   #   ipAddress: 192.168.1.14
   #   installDisk: /dev/mmcblk0
