@@ -35,11 +35,13 @@ talosctl apply-config --insecure --nodes 192.168.1.15 --file clusterconfig/artem
 talosctl apply-config --insecure --nodes 192.168.1.16 --file clusterconfig/artemis-worker3.yaml
 ```
 
-## Retrieve cluster configuration
+## Bootstrap cluster and retrieve cluster configuration
 
 ```bash
-talosctl config endpoint --talosconfig $TALOS_CONFIG_FILE 192.168.1.11
-talosctl kubeconfig --talosconfig $TALOS_CONFIG_FILE --force-context-name artemis --nodes 192.168.1.11
+talosctl bootstrap --nodes 192.168.1.11 --talosconfig clusterconfig/talosconfig
+# This could take several minutes
+talosctl config endpoint --talosconfig clusterconfig/talosconfig 192.168.1.11
+talosctl kubeconfig --talosconfig clusterconfig/talosconfig --force-context-name artemis --nodes 192.168.1.11
 ```
 
 ## Troubleshooting
