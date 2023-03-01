@@ -38,25 +38,21 @@ nodes:
         dhcp: false
         # vip:
         #   ip: 192.168.1.10
-  # - hostname: master3
-  #   ipAddress: 192.168.1.13
-  #   installDisk: /dev/mmcblk0
-  #   controlPlane: true
-  #   disableSearchDomain: true
-  #   nameservers:
-  #     - 1.1.1.1
-  #     - 8.8.8.8
-  #   networkInterfaces:
-  #     - interface: eth0
-  #       addresses:
-  #         - 192.168.1.13/16
-  #       routes:
-  #         - network: 0.0.0.0/0
-  #           gateway: 192.168.178.1
-  #       mtu: 1500
-  #       dhcp: false
-  #       # vip:
-  #       #   ip: 192.168.1.10
+  - hostname: master3
+    ipAddress: 192.168.1.13
+    installDisk: /dev/mmcblk0
+    controlPlane: true
+    networkInterfaces:
+      - interface: eth0
+        addresses:
+          - 192.168.1.13/16
+        routes:
+          - network: 0.0.0.0/0
+            gateway: 192.168.178.1
+        mtu: 1500
+        dhcp: false
+        # vip:
+        #   ip: 192.168.1.10
   # - hostname: worker1
   #   ipAddress: 192.168.1.14
   #   installDisk: /dev/mmcblk0
