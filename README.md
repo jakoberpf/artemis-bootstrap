@@ -37,10 +37,12 @@ talosctl apply-config --insecure --nodes 192.168.1.16 --file clusterconfig/artem
 
 ## Bootstrap cluster and retrieve cluster configuration
 
+**Note** For bootstrapping a cluster with a high available control-plane, all controllers need to be configured before running the `bootstrap` command.
+
 ```bash
+# This command should only be executed once and only on one machine (controlplane)
 talosctl bootstrap --nodes 192.168.1.11 --talosconfig clusterconfig/talosconfig
-# This could take several minutes
-talosctl config endpoint --talosconfig clusterconfig/talosconfig 192.168.1.11
+# This can take several minutes, depending on your internet connection
 talosctl kubeconfig --talosconfig clusterconfig/talosconfig --force-context-name artemis --nodes 192.168.1.11
 ```
 
