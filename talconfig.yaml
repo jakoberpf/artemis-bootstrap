@@ -1,26 +1,17 @@
 clusterName: artemis
 talosVersion: v1.3.5
-kubernetesVersion: v1.26.0
 endpoint: https://192.168.1.11:6443
-domain: artemis.local
+# domain: artemis.local
 allowSchedulingOnMasters: true
 # additionalMachineCertSans:
 #   - 192.168.1.10
-additionalApiServerCertSans:
-  - artemis.local
-clusterPodNets:
-  - 10.244.0.0/16
-clusterSvcNets:
-  - 10.96.0.0/12
+# additionalApiServerCertSans:
+#   - artemis.local
 nodes:
   - hostname: master1
     ipAddress: 192.168.1.11
     installDisk: /dev/mmcblk0
     controlPlane: true
-    disableSearchDomain: true
-    nameservers:
-      - 1.1.1.1
-      - 8.8.8.8
     networkInterfaces:
       - interface: eth0
         addresses:
@@ -29,98 +20,98 @@ nodes:
           - network: 0.0.0.0/0
             gateway: 192.168.178.1
         mtu: 1500
-        dhcp: true
+        dhcp: false
         # vip:
         #   ip: 192.168.1.10
-  - hostname: master2
-    ipAddress: 192.168.1.12
-    installDisk: /dev/mmcblk0
-    controlPlane: true
-    disableSearchDomain: true
-    nameservers:
-      - 1.1.1.1
-      - 8.8.8.8
-    networkInterfaces:
-      - interface: eth0
-        addresses:
-          - 192.168.1.12/16
-        routes:
-          - network: 0.0.0.0/0
-            gateway: 192.168.178.1
-        mtu: 1500
-        dhcp: true
-        # vip:
-        #   ip: 192.168.1.10
-  - hostname: master3
-    ipAddress: 192.168.1.13
-    installDisk: /dev/mmcblk0
-    controlPlane: true
-    disableSearchDomain: true
-    nameservers:
-      - 1.1.1.1
-      - 8.8.8.8
-    networkInterfaces:
-      - interface: eth0
-        addresses:
-          - 192.168.1.13/16
-        routes:
-          - network: 0.0.0.0/0
-            gateway: 192.168.178.1
-        mtu: 1500
-        dhcp: true
-        # vip:
-        #   ip: 192.168.1.10
-  - hostname: worker1
-    ipAddress: 192.168.1.14
-    installDisk: /dev/mmcblk0
-    controlPlane: false
-    disableSearchDomain: true
-    nameservers:
-      - 1.1.1.1
-      - 8.8.8.8
-    networkInterfaces:
-      - interface: eth0
-        addresses:
-          - 192.168.1.14/16
-        routes:
-          - network: 0.0.0.0/0
-            gateway: 192.168.178.1
-        mtu: 1500
-        dhcp: true
-  - hostname: worker2
-    ipAddress: 192.168.1.15
-    installDisk: /dev/mmcblk0
-    controlPlane: false
-    disableSearchDomain: true
-    nameservers:
-      - 1.1.1.1
-      - 8.8.8.8
-    networkInterfaces:
-      - interface: eth0
-        addresses:
-          - 192.168.1.15/16
-        routes:
-          - network: 0.0.0.0/0
-            gateway: 192.168.178.1
-        mtu: 1500
-        dhcp: true
-  - hostname: worker3
-    ipAddress: 192.168.1.16
-    installDisk: /dev/mmcblk0
-    controlPlane: false
-    disableSearchDomain: true
-    nameservers:
-      - 1.1.1.1
-      - 8.8.8.8
-    networkInterfaces:
-      - interface: eth0
-        addresses:
-          - 192.168.1.16/16
-        routes:
-          - network: 0.0.0.0/0
-            gateway: 192.168.178.1
-        mtu: 1500
-        dhcp: true
+  # - hostname: master2
+  #   ipAddress: 192.168.1.12
+  #   installDisk: /dev/mmcblk0
+  #   controlPlane: true
+  #   disableSearchDomain: true
+  #   nameservers:
+  #     - 1.1.1.1
+  #     - 8.8.8.8
+  #   networkInterfaces:
+  #     - interface: eth0
+  #       addresses:
+  #         - 192.168.1.12/16
+  #       routes:
+  #         - network: 0.0.0.0/0
+  #           gateway: 192.168.178.1
+  #       mtu: 1500
+  #       dhcp: false
+  #       # vip:
+  #       #   ip: 192.168.1.10
+  # - hostname: master3
+  #   ipAddress: 192.168.1.13
+  #   installDisk: /dev/mmcblk0
+  #   controlPlane: true
+  #   disableSearchDomain: true
+  #   nameservers:
+  #     - 1.1.1.1
+  #     - 8.8.8.8
+  #   networkInterfaces:
+  #     - interface: eth0
+  #       addresses:
+  #         - 192.168.1.13/16
+  #       routes:
+  #         - network: 0.0.0.0/0
+  #           gateway: 192.168.178.1
+  #       mtu: 1500
+  #       dhcp: false
+  #       # vip:
+  #       #   ip: 192.168.1.10
+  # - hostname: worker1
+  #   ipAddress: 192.168.1.14
+  #   installDisk: /dev/mmcblk0
+  #   controlPlane: false
+  #   disableSearchDomain: true
+  #   nameservers:
+  #     - 1.1.1.1
+  #     - 8.8.8.8
+  #   networkInterfaces:
+  #     - interface: eth0
+  #       addresses:
+  #         - 192.168.1.14/16
+  #       routes:
+  #         - network: 0.0.0.0/0
+  #           gateway: 192.168.178.1
+  #       mtu: 1500
+  #       dhcp: false
+  # - hostname: worker2
+  #   ipAddress: 192.168.1.15
+  #   installDisk: /dev/mmcblk0
+  #   controlPlane: false
+  #   disableSearchDomain: true
+  #   nameservers:
+  #     - 1.1.1.1
+  #     - 8.8.8.8
+  #   networkInterfaces:
+  #     - interface: eth0
+  #       addresses:
+  #         - 192.168.1.15/16
+  #       routes:
+  #         - network: 0.0.0.0/0
+  #           gateway: 192.168.178.1
+  #       mtu: 1500
+  #       dhcp: false
+  # - hostname: worker3
+  #   ipAddress: 192.168.1.16
+  #   installDisk: /dev/mmcblk0
+  #   controlPlane: false
+  #   disableSearchDomain: true
+  #   nameservers:
+  #     - 1.1.1.1
+  #     - 8.8.8.8
+  #   networkInterfaces:
+  #     - interface: eth0
+  #       addresses:
+  #         - 192.168.1.16/16
+  #       routes:
+  #         - network: 0.0.0.0/0
+  #           gateway: 192.168.178.1
+  #       mtu: 1500
+  #       dhcp: false
 # controlPlane:
 #   patches:
 #     - |-
