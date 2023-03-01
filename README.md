@@ -42,6 +42,7 @@ talosctl apply-config --insecure --nodes 192.168.1.16 --file clusterconfig/artem
 ```bash
 # This command should only be executed once and only on one machine (controlplane)
 talosctl bootstrap --nodes 192.168.1.11 --talosconfig clusterconfig/talosconfig
+talosctl dmesg -f --nodes 192.168.1.11 --talosconfig clusterconfig/talosconfig
 # This can take several minutes, depending on your internet connection
 talosctl kubeconfig --talosconfig clusterconfig/talosconfig --force-context-name artemis --nodes 192.168.1.11
 ```
