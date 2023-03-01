@@ -57,10 +57,6 @@ nodes:
   #   ipAddress: 192.168.1.14
   #   installDisk: /dev/mmcblk0
   #   controlPlane: false
-  #   disableSearchDomain: true
-  #   nameservers:
-  #     - 1.1.1.1
-  #     - 8.8.8.8
   #   networkInterfaces:
   #     - interface: eth0
   #       addresses:
@@ -74,10 +70,6 @@ nodes:
   #   ipAddress: 192.168.1.15
   #   installDisk: /dev/mmcblk0
   #   controlPlane: false
-  #   disableSearchDomain: true
-  #   nameservers:
-  #     - 1.1.1.1
-  #     - 8.8.8.8
   #   networkInterfaces:
   #     - interface: eth0
   #       addresses:
@@ -91,10 +83,6 @@ nodes:
   #   ipAddress: 192.168.1.16
   #   installDisk: /dev/mmcblk0
   #   controlPlane: false
-  #   disableSearchDomain: true
-  #   nameservers:
-  #     - 1.1.1.1
-  #     - 8.8.8.8
   #   networkInterfaces:
   #     - interface: eth0
   #       addresses:
