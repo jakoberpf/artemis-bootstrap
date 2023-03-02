@@ -1,6 +1,6 @@
 clusterName: artemis
 talosVersion: v1.3.5
-endpoint: https://192.168.1.11:6443
+endpoint: https://192.168.1.10:6443
 # domain: artemis.local
 allowSchedulingOnMasters: true
 additionalMachineCertSans:
