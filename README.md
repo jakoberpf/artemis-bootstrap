@@ -1,5 +1,4 @@
-# Bootstrapping multiple Raspberry Pi 4's [arm64] into a kubernetes cluster
-
+# Bootstrapping a Talos Raspberry Pi [arm64] kubernetes cluster
 Requirement:
 
 - vault
