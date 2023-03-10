@@ -1,12 +1,14 @@
-version: 2
-ethernets:
-  eth0:
-    addresses:
-      - 192.168.2.13/16
-    gateway4: 192.168.178.1
-    nameservers:
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    eth0:
+      dhcp4: no
+      dhcp6: no
       addresses:
-        - 1.1.1.1
-        - 8.8.8.8
-    dhcp4: no
-    dhcp6: no
+        - 192.168.1.13/16
+      routes:
+        - to: default
+          via: 192.168.178.1
+      nameservers:
+          addresses: [1.1.1.1]
