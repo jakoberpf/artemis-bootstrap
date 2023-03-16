@@ -1,0 +1,8 @@
+---
+
+- name: Application server specific playbook
+  hosts: all
+  become: yes
+  roles:
+     - common/hostname
+    #  - kubernetes/k3s
