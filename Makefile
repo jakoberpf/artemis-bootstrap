@@ -1,7 +1,4 @@
-# https://makefiletutorial.com/
-all: deploy
-
-banner: # Typo: Allogator2 from https://manytools.org/hacker-tools/ascii-banner/
+banner:
 	@echo "############################################################################################"
 	@echo "##                                                                                        ##"
 	@echo "##        :::     ::::::::: ::::::::::: :::::::::: ::::    ::::  ::::::::::: ::::::::     ##"
@@ -15,6 +12,22 @@ banner: # Typo: Allogator2 from https://manytools.org/hacker-tools/ascii-banner/
 	@echo "############################################################################################"
 	@echo "                                                                                            "
 
-vault: banner
-	@echo "[vault] Getting configuration and secrets from Vault"
-	@./bin/vault.sh
+kubespray: banner kubespray.deploy kubespray.post
+
+kubespray.clone: banner
+	@git clone --branch v2.21.0 https://github.com/kubernetes-sigs/kubespray.git .kubespray
+
+kubespray.deploy: banner
+	@echo "[kubespray] Bootstrap cluster with kubespray"
+	@./bin/kubespray-deploy.sh
+
+kubespray.post: banner
+	@echo "[kubespray] Postprocessing kubespray bootstrapping"
+	@./bin/kubespray-post.sh
+
+ansible: banner
+	@echo "[ansible] Configuring bootstraped infrastructure"
+	@./bin/ansible-playbook.sh
+
+deploy: ansible kubespray
+	@echo "[kubespray] Deploy RaspberryPi Kubernetes Cluster"
