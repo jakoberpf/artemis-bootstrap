@@ -1,0 +1,31 @@
+#cloud-config
+
+hostname: kube-master-01
+
+chpasswd:
+  expire: false
+  list:
+  - ubuntu:$UBUNTU_USER_PASS
+
+# Enable password authentication with the SSH daemon
+ssh_pwauth: false
+
+ssh_authorized_keys:
+  - $SSH_PUBLIC_KEY
+
+## Update apt database and upgrade packages on first boot
+package_update: true
+package_upgrade: true
+
+packages:
+- curl
+- wget
+- htop
+- linux-modules-extra-raspi
+
+runcmd:
+- sed -i '/^127\.0\.0\.1\s/s/$/ '"localhost kube-master-01"'/' /etc/hosts
+- sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+- ln -sfn /run/systemd/resolve/resolv.conf /etc/resolv.conf
+- sync
+- reboot -f
