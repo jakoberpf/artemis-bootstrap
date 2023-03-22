@@ -4,5 +4,4 @@
   hosts: all
   become: yes
   roles:
-     - common/hostname
-    #  - kubernetes/k3s
+    #  - common/hostname
