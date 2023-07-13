@@ -9,8 +9,8 @@ crash.log
 *identity.secret
 
 .venv
-.kubespray
 .DS_Store
 .ssh
 !.ssh/config
+.config
 
