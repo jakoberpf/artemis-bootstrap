@@ -65,8 +65,8 @@ jobs:
           python3 -m pip install --upgrade pip
           echo "::endgroup::"
 
-          echo "::group::Install Python requirements from requirements.txt"
-          python3 -m pip install -r requirements.txt
+          echo "::group::Install Python requirements from ansible/requirements.txt"
+          python3 -m pip install -r ansible/requirements.txt
           echo "::endgroup::"
 
       - name: Test with molecule
