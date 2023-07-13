@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 GIT_ROOT=$(git rev-parse --show-toplevel)
-cd $GIT_ROOT
+cd $GIT_ROOT || exit
 
 python3 -m venv .venv/ansible
 python3 -m venv .venv/kubespray

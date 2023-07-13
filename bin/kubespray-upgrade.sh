@@ -1,1 +1,0 @@
-https://github.com/kubernetes-sigs/kubespray/blob/master/docs/upgrades.md

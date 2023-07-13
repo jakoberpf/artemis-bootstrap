@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 GIT_ROOT=$(git rev-parse --show-toplevel)
-cd $GIT_ROOT
+cd $GIT_ROOT || exit
 
 # SSH Keys
 mkdir -p "$GIT_ROOT/.ssh"
-cd .ssh
+cd .ssh || exit
 
 vault2env CICD/global/ssh/automation .env
 source .env

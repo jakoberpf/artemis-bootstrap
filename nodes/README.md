@@ -3,7 +3,7 @@
 ## partition and format
 
 ### partition
-Partition with new table. 
+Partition with new table.
 ```
 fdisk /dev/sda
 $ g (generate new table)
