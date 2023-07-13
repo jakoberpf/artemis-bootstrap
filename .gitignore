@@ -13,4 +13,3 @@ crash.log
 .ssh
 !.ssh/config
 .config
-
