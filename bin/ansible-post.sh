@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 GIT_ROOT=$(git rev-parse --show-toplevel)
-cd $GIT_ROOT
+cd $GIT_ROOT || exit
 
 cp $GIT_ROOT/.kubespray/inventory/artemis/artifacts/admin.conf $GIT_ROOT/kubespray/artifacts/admin.conf
 cp $GIT_ROOT/.kubespray/inventory/artemis/credentials/kubeadm_certificate_key.creds $GIT_ROOT/kubespray/credentials/kubeadm_certificate_key.creds
