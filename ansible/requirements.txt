@@ -8,11 +8,11 @@ ansible-compat==3.0.1
     # via molecule
 ansible-core==2.14.5
     # via
-    #   -r requirements.in
+    #   -r ansible/requirements.in
     #   ansible-compat
     #   ansible-lint
 ansible-lint==6.15.0
-    # via -r requirements.in
+    # via -r ansible/requirements.in
 arrow==1.2.3
     # via jinja2-time
 attrs==22.1.0
@@ -77,9 +77,9 @@ jinja2==3.1.2
 jinja2-time==0.2.0
     # via cookiecutter
 jmespath==1.0.1
-    # via -r requirements.in
+    # via -r ansible/requirements.in
 jsonpatch==1.32
-    # via -r requirements.in
+    # via -r ansible/requirements.in
 jsonpointer==2.3
     # via jsonpatch
 jsonschema==4.17.0
@@ -88,19 +88,19 @@ jsonschema==4.17.0
     #   ansible-lint
     #   molecule
 kubernetes==25.3.0
-    # via -r requirements.in
+    # via -r ansible/requirements.in
 markupsafe==2.1.1
     # via jinja2
 molecule==4.0.4
     # via
-    #   -r requirements.in
+    #   -r ansible/requirements.in
     #   molecule-vagrant
 molecule-vagrant==1.0.0
-    # via -r requirements.in
+    # via -r ansible/requirements.in
 mypy-extensions==0.4.3
     # via black
 netaddr==0.8.0
-    # via -r requirements.in
+    # via -r ansible/requirements.in
 nodeenv==1.7.0
     # via pre-commit
 oauthlib==3.2.2
@@ -122,9 +122,9 @@ platformdirs==2.5.2
 pluggy==1.0.0
     # via molecule
 pre-commit==2.21.0
-    # via -r requirements.in
+    # via -r ansible/requirements.in
 pre-commit-hooks==4.4.0
-    # via -r requirements.in
+    # via -r ansible/requirements.in
 pyasn1==0.4.8
     # via
     #   pyasn1-modules
@@ -149,7 +149,7 @@ python-vagrant==1.0.0
     # via molecule-vagrant
 pyyaml==6.0
     # via
-    #   -r requirements.in
+    #   -r ansible/requirements.in
     #   ansible-compat
     #   ansible-core
     #   ansible-lint
@@ -202,9 +202,9 @@ wcmatch==8.4.1
     # via ansible-lint
 websocket-client==1.4.2
     # via kubernetes
-yamllint==1.31.0
+yamllint==1.32.0
     # via
-    #   -r requirements.in
+    #   -r ansible/requirements.in
     #   ansible-lint
 
 # The following packages are considered to be unsafe in a requirements file:
