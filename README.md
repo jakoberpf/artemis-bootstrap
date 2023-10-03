@@ -13,3 +13,5 @@ scp -i .ssh/automation -o StrictHostKeyChecking=no ubuntu@192.168.1.11:~/.kube/c
 https://technotim.live/posts/k3s-etcd-ansible/
 
 https://docs.orbstack.dev/machines/
+
+https://github.com/renovatebot/renovate/discussions/13845
