@@ -1,5 +1,5 @@
 ---
-# ansible_ssh_private_key_file: ../.ssh/automation
+ansible_ssh_private_key_file: ../.ssh/automation
 ansible_user: ubuntu
 
 k3s_version: v1.25.9+k3s1
@@ -40,6 +40,7 @@ extra_server_args: >-
   --tls-san {{ apiserver_endpoint }}
   --disable servicelb
   --disable traefik
+  --kube-apiserver-arg service-node-port-range=22-32767
 extra_agent_args: >-
   {{ extra_args }}
 
