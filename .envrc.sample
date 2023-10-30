@@ -1,3 +1,5 @@
-export KUBECONFIG=$PWD/kubespray/artifacts/admin.conf
-export VAULT_TOKEN=***************************
-export VAULT_ADDR=https://vault.example.tld
+export KUBECONFIG=$PWD/.config
+
+## For node user-data
+export UBUNTU_USER_PASS=<replace>
+export SSH_PUBLIC_KEY=$(cat $PWD/.ssh/automation.pub)
